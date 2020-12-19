@@ -1,6 +1,7 @@
 from django.db import models
 
 class MasterProductsConfigurable(models.Model):
+    id = models.AutoField(primary_key=True)
     model = models.TextField(blank=True, null=True)
     group_by_model = models.TextField(blank=True, null=True)
     sku = models.TextField(blank=True, null=True)
@@ -100,4 +101,8 @@ class MasterProductsConfigurable(models.Model):
     attribute_beauty = models.TextField(blank=True, null=True)
 
     class Meta:
+        managed = True
         db_table = 'master_products_configurable'
+
+    def __str__(self):
+        return self.model
