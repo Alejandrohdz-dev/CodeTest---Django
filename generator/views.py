@@ -20,16 +20,16 @@ class CVSGenerator(TemplateView):
 def cvs_file_generator(request):
 
     # Get all data from MasterProductsConfigurable Databse Table
-    products = MasterProductsConfigurable.objects.raw('SELECT id,model,name,group_concat(concat, " | ") AS configurations_variatons FROM (SELECT id,model,name, CASE WHEN attribute_color IS NULL THEN sku ELSE "sku=" || sku || "," || " color=" || attribute_color || "" END AS concat FROM master_products_configurable) GROUP BY model')
+    products = MasterProductsConfigurable.objects.raw('SELECT id,model,name,price,group_concat(concat, "|") AS configurations_variatons FROM (SELECT id,model,name,price, CASE WHEN attribute_color IS NULL THEN sku ELSE "sku=" || sku || "," || "color=" || attribute_color || "" END AS concat FROM master_products_configurable) GROUP BY model')
 
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="csv_database_write.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Model', 'Name', 'Configurations_variatons'])
+    writer.writerow(['Model', 'Name', 'Price', 'Configurations_variatons'])
 
     for product in products:
-        writer.writerow([product.model, product.name, product.configurations_variatons])
+        writer.writerow([product.model, product.name, product.price, product.configurations_variatons])
 
     return response
