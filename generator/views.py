@@ -15,9 +15,13 @@ class ProductsListCreateAPIView(generics.ListCreateAPIView):
 
 class CVSGenerator(TemplateView):
     """TemplateView for home page"""
-    template_name = "index.html"
+    template_name = 'index.html'
 
 def cvs_file_generator(request):
+    """
+    Function View to generate the CVS file from the database records, creating a new column with the
+    sku and attribute_color attributes.
+    """
 
     # Get all data from MasterProductsConfigurable Databse Table
     products = MasterProductsConfigurable.objects.raw('SELECT id,model,name,price,group_concat(concat, "|") AS configurations_variatons FROM (SELECT id,model,name,price, CASE WHEN attribute_color IS NULL THEN sku ELSE "sku=" || sku || "," || "color=" || attribute_color || "" END AS concat FROM master_products_configurable) GROUP BY model')
