@@ -2,7 +2,7 @@
 
 A coding test to show my abilities with Django, Python, and backend projects in general. 
 
-The project consists in take the records on a SQLite3 database and generate a CVS file with those records also has one endpoint to list and create new data created with Django Rest Framework.
+The project consists in take the records on a SQLite3 database and generate a CVS file with those records also has one endpoint to list and create new data, using Django Rest Framework to create the endpoint.
 
 ## Usage
 
@@ -10,7 +10,7 @@ The project consists in take the records on a SQLite3 database and generate a CV
 
 Use the Generate CVS button in the homepage and it will download the CVS file
 
-### Endpoint
+### Endpoint:
 
 /api/products/
 
