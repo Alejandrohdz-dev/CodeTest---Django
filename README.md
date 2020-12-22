@@ -14,7 +14,7 @@ Use the Generate CVS button in the homepage and it will download the CVS file
 
 /api/products/
 
-## Instalation
+## Installation
 
 ```
 python -m venv <Your-venv-name>
