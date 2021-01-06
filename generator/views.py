@@ -13,13 +13,13 @@ class ProductsListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ProductsSerializer
 
 
-class CVSGenerator(TemplateView):
+class CSVGenerator(TemplateView):
     """TemplateView for home page"""
     template_name = 'index.html'
 
-def cvs_file_generator(request):
+def csv_file_generator(request):
     """
-    Function View to generate the CVS file from the database records, creating a new column with the
+    Function View to generate the CSV file from the database records, creating a new column with the
     sku and attribute_color attributes.
     """
 
